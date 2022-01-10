@@ -73,29 +73,25 @@ export class AppComponent {
             return;
         }
         console.log("data",this.registerForm.value);
-        // alert('SUCCESS!! :-)\n\n' + JSON.stringify(this.registerForm.value))
     }
     investRange(value: any){
         
         this.investData = value;
-        console.log(this.investData);
     }
     yearRange(value: any){
         
         this.yearData = value;
-        console.log(this.yearData);
     }
     interestRange(value: any){
        
         this.interestData = value;
-        console.log(this.interestData);
     }
 
     totalInvest(){
         let n =12;
         var interestDecimal=this.interestData/100;
         this.totalInvestmentValue = this.investData * (Math.pow((1 + (interestDecimal / n)), (n * this.yearData)));
-        console.log(this.totalInvestmentValue,"total");
+        // console.log(this.totalInvestmentValue,"total");
 
     }
 
@@ -103,7 +99,7 @@ export class AppComponent {
         let n =12;
         var investDeci=this.investData/100;
         this.totalInterestValue = this.interestData * (Math.pow((1 + (investDeci / n)), (n * this.yearData)));
-        console.log(this.totalInterestValue,"total Int");
+        // console.log(this.totalInterestValue,"total Int");
         this.ngOnInit();
     }
 }

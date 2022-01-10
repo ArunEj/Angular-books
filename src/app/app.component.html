@@ -27,7 +27,6 @@
                   </div>
                   <div class="form-group">
                     <label>Investment Propose</label><br>
-                    <!-- <input type="text" formControlName="investment" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.investment.errors }" /> -->
                     <mat-form-field appearance="fill">
                         <!-- <mat-label>Toppings</mat-label> -->
                         <mat-select [formControl]="toppings" multiple>
@@ -36,12 +35,8 @@
                       </mat-form-field>
                     <div *ngIf="submitted && f.investment.errors" class="invalid-feedback">
                         <div *ngIf="f.investment.errors.required">Investment is required</div>
-                        <!-- <div *ngIf="f.investment.errors.email">Investment must be a valid email address</div> -->
                     </div>
                 </div>
-                  <!-- <div class="form-group">
-                      <button class="btn btn-primary">Register</button>
-                  </div> -->
               </form>
               <!-- < Investment> -->
               <mat-card class="example-result-card row">
