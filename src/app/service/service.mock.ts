@@ -13,7 +13,7 @@ export class Service  implements ITodoService{
           {
             id: 0,
             name: 'Web Development',
-            author_name: 'Ravindra Akella , Arun Kumar Tamirisa',
+            author_name: 'Arun Kumar Tamirisa',
             img_url: '../assets/images/book 1.webp',
             description: 'Enterprise Application Development with C# 9 and .NET 5: Enhance your C# and .NET skills by mastering the process of developing professional-grade web applications',
             date_dt: 'Mar 19, 2021',

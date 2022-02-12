@@ -15,7 +15,7 @@
     <mat-card class="example-card">
       <mat-card-title-group>
         <mat-card-title>{{todo.name}}</mat-card-title>
-        <mat-card-subtitle>by {{todo.author_name}}</mat-card-subtitle>
+        <mat-card-subtitle>by {{todo.author_name}} {{todo.date_dt}}</mat-card-subtitle>
         <mat-card-subtitle><ngb-rating [(rate)]="currentRate" class="rating"></ngb-rating></mat-card-subtitle>
         <mat-card-subtitle>₹ {{todo.price}}</mat-card-subtitle>
         <mat-card-subtitle><mat-card-actions>
