@@ -24,9 +24,11 @@
     "@ng-bootstrap/ng-bootstrap": "^11.0.0",
     "bootstrap": "^4.6.0",
     "canvas": "^2.8.0",
-    "ng-knife": "^0.2.8",
     "chart.js": "^2.9.3",
+    "crypto-js": "^4.1.1",
+    "ng-knife": "^0.2.8",
     "ng2-charts": "^2.4.2",
+    "ngx-star-rating": "^2.1.0",
     "rxjs": "~7.4.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"

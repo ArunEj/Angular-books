@@ -8,6 +8,7 @@ import { MaterialModule } from './material/material/material.module';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ChartComponent } from './chart-view/chart/chart.component';
+import { NgxStarRatingModule } from 'ngx-star-rating';
 
 import { ChartsModule } from 'ng2-charts';
 @NgModule({
@@ -23,7 +24,8 @@ import { ChartsModule } from 'ng2-charts';
     NgbModule,
     FormsModule,
     ReactiveFormsModule,
-    ChartsModule
+    ChartsModule,
+    NgxStarRatingModule
   ],
   providers: [],
   bootstrap: [AppComponent]

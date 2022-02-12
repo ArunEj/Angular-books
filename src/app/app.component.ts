@@ -1,105 +1,72 @@
 import { Component } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { Chart, ChartDataSets, ChartOptions, ChartType } from 'chart.js';
-import { MultiDataSet, Label } from 'ng2-charts';
+import { Service } from 'src/app/service/service.mock';
+
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  registerForm: any;
-    submitted = false;
-    investValue: any;
-    // yearValue: any;
-    interestValue: any;
-    autoTicks = false;
-    disabled = false;
-    invert = false;
-    max = 100;
-    min = 0;
-    showTicks = false;
-    step = 1;
-    thumbLabel = false;
-    value = 0;
-    vertical = false;
-    tickInterval = 1;
-    Interestvalue = 0;
-    yearValue = 0;
-    InterestData: any;
-    yearData: any;
-    interestData: any;
-    totalInvestment: any;
-    investData: any;
-    totalInterest: any;
-    totalInterestValue: any;
-    totalInvestmentValue: any;
-    
-    toppings = new FormControl();
-    toppingList: string[] = ['Education', 'Car', 'House', 'Retirement'];
-    
-    getSliderTickInterval(): number | 'auto' {
-      if (this.showTicks) {
-        return this.autoTicks ? 'auto' : this.tickInterval;
-      }
-  
-      return 0;
-    }
-       // Doughnut
-    public doughnutChartLabels: Label[] = ['Total Investment','Total Interest'];
-    public doughnutChartData: ChartDataSets[] = [];
-    public doughnutChartType: ChartType = 'doughnut';
-   
-    constructor(private formBuilder: FormBuilder) { }
+  title = 'books';
+  todos: any;
+  currentRate = 8;
+  count: any;
+  showCart: boolean = false;
+  cartData: any = [];
+  qtyCount: any;
+  cartData1: any = [];
+    mulprice: any;
+    getCartData: any;
 
-    ngOnInit() {
-        this.registerForm = this.formBuilder.group({
-            name: ['', Validators.required],
-            email: ['', [Validators.required, Validators.email,Validators.pattern('^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$')]],
-        });
-        
-        this.doughnutChartData = [{ data: [this.totalInvestmentValue,this.totalInterestValue] ,backgroundColor: ['rgb(255, 99, 132)','rgb(54, 162, 235)'],borderColor: [
-            'rgb(255, 99, 132)','rgb(54, 162, 235)']}];
+  constructor(
+    private todoService: Service) {
+        this.count = 0;
+        this.qtyCount = 1;
     }
-    
-    // convenience getter for easy access to form fields
-    get f() { return this.registerForm.controls; }
 
-    onSubmit() {
-        this.submitted = true;
-        
-        // stop here if form is invalid
-        if (this.registerForm.invalid) {
-            return;
+  ngOnInit(): void {
+    this.todoService.getBookDetails().subscribe((todos) => this.todos = todos)
+    // console.log(this.todos)
+  }
+
+  addCart(_id: any,_todo: any){
+    if (this.cartData.indexOf(_todo) > -1) {
+        // this.cartData = this.cartData.filter((e: { id: any; }) => e.id != _todo.id);
+        // this.count--;
+      } else {
+        if ((this.cartData.find((data: { id: any; }) => data.id != _todo.id) || this.cartData.length === 0)) {
+          this.cartData = [...this.cartData, _todo];
+          for(var i=0;i< this.cartData.length;i++){
+              this.cartData[i].qty= 1;
+          }
+          this.count++;
         }
-        console.log("data",this.registerForm.value);
     }
-    investRange(value: any){
-        
-        this.investData = value;
-    }
-    yearRange(value: any){
-        
-        this.yearData = value;
-    }
-    interestRange(value: any){
-       
-        this.interestData = value;
-    }
+  }
 
-    totalInvest(){
-        let n =12;
-        var interestDecimal=this.interestData/100;
-        this.totalInvestmentValue = this.investData * (Math.pow((1 + (interestDecimal / n)), (n * this.yearData)));
-        // console.log(this.totalInvestmentValue,"total");
+  goToCart(){
+      this.showCart = true;
+  }
 
-    }
+  back(){
+    this.showCart = false;
+  }
 
-    totaInterest(){
-        let n =12;
-        var investDeci=this.investData/100;
-        this.totalInterestValue = this.interestData * (Math.pow((1 + (investDeci / n)), (n * this.yearData)));
-        // console.log(this.totalInterestValue,"total Int");
-        this.ngOnInit();
-    }
+  remove(_id: any,_todo: any){
+    this.cartData = this.cartData.filter((e: { id: any; }) => e.id != _todo.id);
+    this.count--;
+  }
+
+  getQty(_qty: any,_cart: any){
+    _cart.qty = _qty;
+    console.log("getData",this.getCartData)
+    this.cartData.forEach((element: { id: any; price: string; }) => {
+        if (_cart.id === element.id) {
+            // this.mulprice = element.price;
+            console.log("element",_cart.price , element.price)
+            this.cartData[_cart.id].price = JSON.parse(element.price) * _qty;
+            console.log("mul",this.cartData[_cart.id].price,this.cartData)
+        }
+    }); 
+  }
 }
