@@ -15,7 +15,7 @@
     <mat-card class="example-card">
       <mat-card-title-group>
         <mat-card-title>{{todo.name}}</mat-card-title>
-        <mat-card-subtitle>by {{todo.author_name}} {{todo.date_dt}}</mat-card-subtitle>
+        <mat-card-subtitle>by {{todo.author_name}} | {{todo.date_dt}}</mat-card-subtitle>
         <mat-card-subtitle><ngb-rating [(rate)]="currentRate" class="rating"></ngb-rating></mat-card-subtitle>
         <mat-card-subtitle>₹ {{todo.price}}</mat-card-subtitle>
         <mat-card-subtitle><mat-card-actions>
@@ -47,7 +47,7 @@
         <div class="col-md-3"><img src="{{cart.img_url}}" class="cart-img"/></div>
         <div class="col-md-8">
           <div>{{cart.name}}</div>
-          <div>{{cart.author_name}}</div>
+          <div>{{cart.author_name}} | {{cart.date_dt}}</div>
           <div>{{cart.description}}</div>
           <div class="stock-txt">In Stock</div>
           <div><div class="example-button-row">
